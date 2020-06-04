@@ -8,16 +8,16 @@ input_text(){
   local label="$1"
   local label_length=${#label}
   local line=$(eval printf "─"'%.0s' {1..$label_length})
-  local hint="$2"
-  local marker="${3:- 👉 }"
+  local hint="$input_text_hint"
+  local marker="${input_text_marker:-👉}"
+
+  input_text_hint=""
 
   echo "$(tput bold)$label$(tput sgr0)" >&2
   echo -e "\033[32m$line\033[39m" >&2
-  if [ -n "$hint" ]; then
-    echo "$(tput dim)$hint$(tput sgr0)" >&2
-  fi
-  echo ""
-  read -p "$(tput bold)$marker" value >&2
+  [ -z "$hint" ] || echo "$(tput dim)$hint$(tput sgr0)" >&2
+  echo "" >&2
+  read -p "$(tput bold) $marker " value >&2
   echo "" >&2
 
   echo "$value$(tput sgr0)"
@@ -30,16 +30,19 @@ input_text(){
 input_select(){
   local label="$1"
   local line=$(eval printf "─"'%.0s' {1..${#label}})
-  local hint="$2"
-  local marker="${3:- 👉 }"
-  local options=("${@:4}")
+  local options=("${@:2}")
   local value=""
   local selected=0
   local index=0
+  local hint="$input_select_hint"
+  local marker="${input_select_marker:-👉}"
+
+  input_select_hint=""
 
   echo "$(tput bold)$label$(tput sgr0)" >&2
   echo -e "\033[32m$line\033[39m" >&2
-  echo ""
+  [ -z "$hint" ] || echo "$(tput dim)$hint$(tput sgr0)" >&2
+  echo "" >&2
   input_select_options "$marker"
   input_select_input "$marker"
   echo "" >&2
@@ -50,7 +53,6 @@ input_select(){
 input_select_options(){
   local marker="$1"
   local display="$2"
-  local indent=$(eval printf ""'%.0s' {1..${#marker}})
 
   if [[ "$display" = "clear" ]]; then
     index=0
@@ -66,9 +68,9 @@ input_select_options(){
 
   for option in "${options[@]}"; do
     if [[ "$index" = "$selected" ]]; then
-      echo -ne "$(tput bold)$marker" >&2
+      echo -ne "$(tput bold) $marker " >&2
     else
-      echo -ne "$indent" >&2
+      echo -ne "    " >&2
     fi
 
     echo "$option$(tput sgr0)" >&2
