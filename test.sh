@@ -1,6 +1,6 @@
 #!/bin/bash
 
-[ -d "utils" ] source "utils/init.sh" || curl -sL "https://gist.githubusercontent.com/johanwestling/9c81e35db54c7d59882a28f0f7ddd455/raw/5eebd24dd0929763256c455b14b2b2e9ec378431/bash-utils.sh" | source
+source "utils/init.sh"
 
 options=("1" "2" "3")
 
