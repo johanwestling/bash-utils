@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source "utils.sh"
+source <(cat utils/*)
 
 options=("1" "2" "3")
 
