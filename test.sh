@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source <(cat utils/*)
+[ -d "bash-utils" ] && source "bash-utils/init.sh" || curl -sL "https://github.com/johanwestling/bash-utils/raw/master/bash-utils/init.sh" | bash
 
 options=("1" "2" "3")
 
