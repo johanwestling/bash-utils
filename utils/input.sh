@@ -18,9 +18,9 @@ input_text(){
   [ -z "$hint" ] || echo "$(tput dim)$hint$(tput sgr0)" >&2
   echo "" >&2
   read -p "$(tput bold) $marker " value >&2
-  echo "" >&2
+  echo "$(tput sgr0)" >&2
 
-  echo "$value$(tput sgr0)"
+  echo "$value"
 }
 
 #
@@ -45,7 +45,7 @@ input_select(){
   echo "" >&2
   input_select_options "$marker"
   input_select_input "$marker"
-  echo "" >&2
+  echo "$(tput sgr0)" >&2
 
   echo "$value"
 }
