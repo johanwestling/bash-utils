@@ -2,11 +2,11 @@
 
 return_path="$PWD"
 
-if ! [ -f "bash-utils/init.sh" ]; then
-  git clone "git@github.com:johanwestling/bash-utils.git" "bash-utils" > /dev/null 2>&1
+if [ -f "bash-utils/init.sh" ]; then
+  git clone -q "git@github.com:johanwestling/bash-utils.git" "bash-utils"
 elif [ -f "bash-utils/init.sh" ]; then
   cd "bash-utils"
-  git pull > /dev/null 2>&1
+  git pull -q
   cd "$return_path"
 fi
 
