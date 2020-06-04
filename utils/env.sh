@@ -10,6 +10,7 @@ env_export_all(){
 
 env_export(){
   local key="$1"
+  local file="${2:-.env}"
 
-  $(cat .env | grep "$key" | sed 's/^/export /')
+  $(cat "$file" | grep "$key" | sed 's/^/export /')
 }
