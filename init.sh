@@ -2,9 +2,13 @@
 
 return_path="$PWD"
 
-# Clone repository (if missing)
-! [ -f "bash-utils/init.sh" ] || cd "bash-utils" && git pull > /dev/null 2>&1 && cd "$return_path"
-[ -f "bash-utils/init.sh" ] || git clone "git@github.com:johanwestling/bash-utils.git" "bash-utils" > /dev/null 2>&1
+if ! [ -f "bash-utils/init.sh" ]; then
+  git clone "git@github.com:johanwestling/bash-utils.git" "bash-utils" > /dev/null 2>&1
+elif [ -f "bash-utils/init.sh" ]; then
+  cd "bash-utils"
+  git pull > /dev/null 2>&1
+  cd "$return_path"
+fi
 
 # Load all util files.
 source <(cat "bash-utils/utils/"*)
