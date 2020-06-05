@@ -1,6 +1,7 @@
 #!/bin/bash
 
-source "utils/init.sh"
+utils_path="."
+source "init.sh"
 
 options=("1" "2" "3")
 
