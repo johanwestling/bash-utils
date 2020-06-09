@@ -10,6 +10,7 @@ task_title(){
 
   echo "$(tput bold)$text$(tput sgr0)" >&2
   echo -e "\033[32m$line\033[39m" >&2
+  echo "" >&2
 }
 
 task_label(){
