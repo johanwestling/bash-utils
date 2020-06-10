@@ -23,28 +23,34 @@ task_label(){
 
 task_done(){
   local text="${1:-Done}"
+  local icon="${task_done_icon:-${task_done_icon_default:-👍}}"
 
   [ -n "$text" ] || read text
+  [ -z "$icon" ] || icon=" $icon "
 
-  echo "👍 $(tput bold)$text$(tput sgr0)" >&2
+  echo "$(tput bold)$icon$text$(tput sgr0)" >&2
   echo ""
 }
 
 task_fail(){
   local text="${1:-Failed}"
+  local icon="${task_fail_icon:-${task_fail_icon_default:-👎}}"
 
   [ -n "$text" ] || read text
+  [ -z "$icon" ] || icon=" $icon "
 
-  echo "👎 $(tput bold)$text$(tput sgr0)" >&2
+  echo "$(tput bold)$icon$text$(tput sgr0)" >&2
   echo ""
 }
 
 task_notice(){
   local text="${1}"
+  local icon="${task_notice_icon:-${task_notice_icon_default:-👋}}"
 
   [ -n "$text" ] || read text
+  [ -z "$icon" ] || icon=" $icon "
 
-  echo "👋 $(tput bold)$text$(tput sgr0)" >&2
+  echo "$(tput bold)$icon$text$(tput sgr0)" >&2
   echo ""
 }
 

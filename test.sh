@@ -7,6 +7,13 @@ options=("1" "2" "3")
 
 echo ""
 
+task_title "This is a task title"
+task_label "This is a task label"
+echo ""
+task_done
+task_fail
+task_notice "This is a notice"
+
 # Select input with hint.
 input_select_hint="This is a hint that can be used for further instructions."
 value_select_1=$(input_select "Select label:" "${options[@]}")

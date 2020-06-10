@@ -9,7 +9,7 @@ input_text(){
   local label_length=${#label}
   local line=$(eval printf "─"'%.0s' {1..$label_length})
   local hint="$input_text_hint"
-  local marker="${input_text_marker:-👉}"
+  local marker="${input_text_marker:-${input_text_marker_default:-👉}}"
 
   input_text_hint=""
 
@@ -35,7 +35,7 @@ input_select(){
   local selected=0
   local index=0
   local hint="$input_select_hint"
-  local marker="${input_select_marker:-👉}"
+  local marker="${input_select_marker:-${input_select_marker_default:-👉}}"
 
   input_select_hint=""
 
