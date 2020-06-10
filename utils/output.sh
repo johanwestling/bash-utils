@@ -43,6 +43,17 @@ task_fail(){
   echo ""
 }
 
+task_skip(){
+  local text="${1:-Skipped}"
+  local icon="${task_skip_icon:-${task_skp_icon_default:-👇}}"
+
+  [ -n "$text" ] || read text
+  [ -z "$icon" ] || icon=" $icon "
+
+  echo "$(tput bold)$icon$text$(tput sgr0)" >&2
+  echo ""
+}
+
 task_notice(){
   local text="${1}"
   local icon="${task_notice_icon:-${task_notice_icon_default:-👋}}"
@@ -68,4 +79,10 @@ uppercase(){
   [ -n "$text" ] || read text
 
   echo $(echo $text | tr '[:lower:]' '[:upper:]')
+}
+
+indent(){
+  while read line; do
+    echo -e "$line" | sed 's/^/  /'
+  done
 }
