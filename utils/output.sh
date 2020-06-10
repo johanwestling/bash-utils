@@ -8,9 +8,9 @@ task_title(){
   local text_length=${#text}
   local line=$(eval printf "─"'%.0s' {1..$text_length})
 
-  echo "$(tput bold)$text$(tput sgr0)" >&2
-  echo -e "\033[32m$line\033[39m" >&2
-  echo "" >&2
+  echo "$(tput bold)$text$(tput sgr0)"
+  echo -e "\033[32m$line\033[39m"
+  echo ""
 }
 
 task_label(){
@@ -18,7 +18,7 @@ task_label(){
 
   [ -n "$text" ] || read text
 
-  echo " ◾$text$(tput sgr0)" >&2
+  echo " ◾$text$(tput sgr0)"
 }
 
 task_done(){
@@ -28,7 +28,7 @@ task_done(){
   [ -n "$text" ] || read text
   [ -z "$icon" ] || icon=" $icon "
 
-  echo "$(tput bold)$icon$text$(tput sgr0)" >&2
+  echo "$(tput bold)$icon$text$(tput sgr0)"
   echo ""
 }
 
@@ -39,7 +39,7 @@ task_fail(){
   [ -n "$text" ] || read text
   [ -z "$icon" ] || icon=" $icon "
 
-  echo "$(tput bold)$icon$text$(tput sgr0)" >&2
+  echo "$(tput bold)$icon$text$(tput sgr0)"
   echo ""
 }
 
@@ -50,7 +50,7 @@ task_skip(){
   [ -n "$text" ] || read text
   [ -z "$icon" ] || icon=" $icon "
 
-  echo "$(tput bold)$icon$text$(tput sgr0)" >&2
+  echo "$(tput bold)$icon$text$(tput sgr0)"
   echo ""
 }
 
@@ -61,7 +61,7 @@ task_notice(){
   [ -n "$text" ] || read text
   [ -z "$icon" ] || icon=" $icon "
 
-  echo "$(tput bold)$icon$text$(tput sgr0)" >&2
+  echo "$(tput bold)$icon$text$(tput sgr0)"
   echo ""
 }
 
