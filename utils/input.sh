@@ -13,14 +13,16 @@ input_text(){
 
   input_text_hint=""
 
-  echo "$(tput bold)$label$(tput sgr0)" >&2
-  echo -e "\033[32m$line\033[39m" >&2
-  [ -z "$hint" ] || echo "$(tput dim)$hint$(tput sgr0)" >&2
-  echo "" >&2
-  read -p "$(tput bold) $marker " value >&2
-  echo "$(tput sgr0)" >&2
+  [ -z "$marker" ] || marker=" $marker "
 
-  echo "$value"
+  echo -e "\033[1;39m$label\033[0;39m" >&2
+  echo -e "\033[1;32m$line\033[0;39m" >&2
+  [ -z "$hint" ] || echo "\033[2m$hint\033[0;39m" | indent >&2
+  echo -e "\033[1;39m" >&2
+  read -p "$marker" value >&2
+  echo -e "\033[0;39m" >&2
+
+  echo -e "$value"
 }
 
 #
@@ -39,15 +41,15 @@ input_select(){
 
   input_select_hint=""
 
-  echo "$(tput bold)$label$(tput sgr0)" >&2
-  echo -e "\033[32m$line\033[39m" >&2
-  [ -z "$hint" ] || echo "$(tput dim)$hint$(tput sgr0)" >&2
-  echo "" >&2
+  echo -e "\033[1;39m$label\033[0;39m" >&2
+  echo -e "\033[1;32m$line\033[0;39m" >&2
+  [ -z "$hint" ] || echo "\033[2m$hint\033[0;39m" | indent >&2
+  echo -e "" >&2
   input_select_options "$marker"
   input_select_input "$marker"
-  echo "$(tput sgr0)" >&2
+  echo -e "\033[0;39m" >&2
 
-  echo "$value"
+  echo -e "$value"
 }
 
 input_select_options(){
@@ -68,12 +70,12 @@ input_select_options(){
 
   for option in "${options[@]}"; do
     if [[ "$index" = "$selected" ]]; then
-      echo -ne "$(tput bold) $marker " >&2
+      echo -ne "\033[1;39m $marker " >&2
     else
       echo -ne "    " >&2
     fi
 
-    echo "$option$(tput sgr0)" >&2
+    echo -e "$option\033[0;39m" >&2
 
     index=$(( $index + 1 ))
   done

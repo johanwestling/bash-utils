@@ -9,4 +9,6 @@ if ! [ -f "$utils_path/init.sh" ]; then
 fi
 
 # Load all util files.
-source <(cat "$utils_path/utils/"*)
+for utils_file in "$utils_path/utils/"*; do
+  source "$utils_file"
+done
