@@ -17,7 +17,7 @@ input_text(){
 
   echo -e "\033[1;39m$label\033[0;39m" >&2
   echo -e "\033[1;32m$line\033[0;39m" >&2
-  [ -z "$hint" ] || echo "\033[2m$hint\033[0;39m" | indent >&2
+  [ -z "$hint" ] || echo -e "\033[2m$hint\033[0;39m" | indent >&2
   echo -e "\033[1;39m" >&2
   read -p "$marker" value >&2
   echo -e "\033[0;39m" >&2
@@ -43,7 +43,7 @@ input_select(){
 
   echo -e "\033[1;39m$label\033[0;39m" >&2
   echo -e "\033[1;32m$line\033[0;39m" >&2
-  [ -z "$hint" ] || echo "\033[2m$hint\033[0;39m" | indent >&2
+  [ -z "$hint" ] || echo -e "\033[2m$hint\033[0;39m" | indent >&2
   echo -e "" >&2
   input_select_options "$marker"
   input_select_input "$marker"
