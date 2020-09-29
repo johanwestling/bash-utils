@@ -1,6 +1,6 @@
 #!/bin/bash
 
-task_title(){
+output_title(){
   local text="$1"
 
   [ -n "$text" ] || read text
@@ -13,9 +13,9 @@ task_title(){
   echo -e ""
 }
 
-task_label(){
+output_label(){
   local text="$1"
-  local icon="${task_label_icon:-${task_label_icon_default:-∙}}"
+  local icon="${output_label_icon:-${output_label_icon_default:-∙}}"
 
   [ -n "$text" ] || read text
   [ -z "$icon" ] || icon=" $icon "
@@ -23,9 +23,9 @@ task_label(){
   echo -e "$icon\033[1;39m$text\033[0;39m"
 }
 
-task_done(){
+output_done(){
   local text="${1:-Done}"
-  local icon="${task_done_icon:-${task_done_icon_default:-\033[1;32m●\033[0;39m}}"
+  local icon="${output_done_icon:-${output_done_icon_default:-\033[1;32m●\033[0;39m}}"
 
   [ -n "$text" ] || read text
   [ -z "$icon" ] || icon=" $icon "
@@ -34,9 +34,9 @@ task_done(){
   echo -e ""
 }
 
-task_fail(){
+output_fail(){
   local text="${1:-Failed}"
-  local icon="${task_fail_icon:-${task_fail_icon_default:-\033[1;31m●\033[0;39m}}"
+  local icon="${output_fail_icon:-${output_fail_icon_default:-\033[1;31m●\033[0;39m}}"
 
   [ -n "$text" ] || read text
   [ -z "$icon" ] || icon=" $icon "
@@ -45,9 +45,9 @@ task_fail(){
   echo -e ""
 }
 
-task_skip(){
+output_skip(){
   local text="${1:-Skipped}"
-  local icon="${task_skip_icon:-${task_skp_icon_default:-\033[1;33m↓\033[0;39m}}"
+  local icon="${output_skip_icon:-${output_skp_icon_default:-\033[1;33m↓\033[0;39m}}"
 
   [ -n "$text" ] || read text
   [ -z "$icon" ] || icon=" $icon "
@@ -56,9 +56,9 @@ task_skip(){
   echo -e ""
 }
 
-task_notice(){
+output_notice(){
   local text="${1}"
-  local icon="${task_notice_icon:-${task_notice_icon_default:-👉}}"
+  local icon="${output_notice_icon:-${output_notice_icon_default:-👉}}"
 
   [ -n "$text" ] || read text
   [ -z "$icon" ] || icon=" $icon "
@@ -67,7 +67,7 @@ task_notice(){
   echo -e ""
 }
 
-lowercase(){
+output_lowercase(){
   local text="$1"
 
   [ -n "$text" ] || read text
@@ -75,7 +75,7 @@ lowercase(){
   echo -e $(echo -e $text | tr '[:upper:]' '[:lower:]')
 }
 
-uppercase(){
+output_uppercase(){
   local text="$1"
 
   [ -n "$text" ] || read text
@@ -83,7 +83,7 @@ uppercase(){
   echo -e $(echo -e $text | tr '[:lower:]' '[:upper:]')
 }
 
-indent(){
+output_indent(){
   while read line; do
     echo -e -e "$line" | sed 's/^/   /'
   done
